@@ -10,6 +10,7 @@
 #import "Weather.h"
 #import "WeatherAPI.h"
 #import "WeatherDetailViewController.h"
+#import <AFNetworking/AFNetworking.h>
 #import <MagicalRecord/MagicalRecord.h>
 
 static NSString *const APIKey = @"28b2c96074e5b1ded3c1053c7ab408c4";
@@ -118,7 +119,18 @@ static NSString *const APIKey = @"28b2c96074e5b1ded3c1053c7ab408c4";
     tableView.allowsSelection = NO;
     Weather *weather = [self.zipCodeList objectAtIndexPath:indexPath];
     NSString *zipCode = weather.zip;
-    
+    if (![self isConnectedToInternet]) {
+        Weather *weather = [Weather MR_findFirstByAttribute:@"zip" withValue:zipCode];
+        if (!weather || !weather.weatherDescription.length) {
+            NSError *error = [[NSError alloc] initWithDomain:@"WeatherApp" code:-1 userInfo:@{NSLocalizedDescriptionKey: @"Failed to load weather data, make sure you have an active internet connection"}];
+            [self displayError:error];
+            tableView.allowsSelection = YES;
+            return;
+        }
+        [self showWeatherDetailViewWithZipCode:zipCode];
+        tableView.allowsSelection = YES;
+        return;
+    }
     [[WeatherAPI sharedInstance] getWeatherByZipCode:zipCode
                                                    success:^(id responseObject) {
                                                        tableView.allowsSelection = YES;
@@ -133,9 +145,7 @@ static NSString *const APIKey = @"28b2c96074e5b1ded3c1053c7ab408c4";
                                                        [self addWeatherToZipCode:mutableResponse];
                                                    }
                                                      failure:^(NSURLSessionDataTask *task, NSError *error) {
-                                                         NSLog(@"Error: %@", error);
-                                                         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-                                                         [alertView show];
+                                                         [self displayError:error];
                                                          tableView.allowsSelection = YES;
                                                      }];
 }
@@ -189,8 +199,7 @@ static NSString *const APIKey = @"28b2c96074e5b1ded3c1053c7ab408c4";
         if (error && !contextDidSave) {
             return;
         }
-        Weather *weather = [Weather getWeatherWithZipCode:responseObject[@"zip"]];
-        [self performSegueWithIdentifier:@"showZipWeather" sender:weather];
+        [self showWeatherDetailViewWithZipCode:responseObject[@"zip"]];
     }];
 }
 
@@ -203,5 +212,23 @@ static NSString *const APIKey = @"28b2c96074e5b1ded3c1053c7ab408c4";
         vc.weather = sender;
     }
 }
+
+- (void)showWeatherDetailViewWithZipCode:(NSString *)zipCode {
+    Weather *weather = [Weather getWeatherWithZipCode:zipCode];
+    [self performSegueWithIdentifier:@"showZipWeather" sender:weather];
+}
+
+#pragma mark - Utils
+
+- (BOOL)isConnectedToInternet {
+    return [AFNetworkReachabilityManager sharedManager].reachable;
+}
+
+- (void)displayError:(NSError *)error {
+    NSLog(@"Error: %@", error);
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+    [alertView show];
+}
+
 
 @end

@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <MagicalRecord/MagicalRecord.h>
+#import <AFNetworking/AFNetworkReachabilityManager.h>
 #import "Weather.h"
 
 @interface AppDelegate ()
@@ -19,6 +20,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
     [self firstLaunchSetup];
     return YES;
 }
