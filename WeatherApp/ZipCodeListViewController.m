@@ -28,7 +28,7 @@ static NSString *const APIKey = @"28b2c96074e5b1ded3c1053c7ab408c4";
     [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                   target:self
                                                   action:@selector(showAddZipCodeAlert)];
-    
+    //Setting API Key to Weather API servi
     [WeatherAPI setAPIKey:APIKey];
     
 }
