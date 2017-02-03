@@ -8,9 +8,10 @@
 
 #import "ZipCodeListViewController.h"
 #import "Weather.h"
+#import <MagicalRecord/MagicalRecord.h>
 
-@interface ZipCodeListViewController ()
-@property (strong, nonatomic) NSArray *zipCodesList;
+@interface ZipCodeListViewController () <NSFetchedResultsControllerDelegate>
+@property (strong, nonatomic) NSFetchedResultsController *zipCodeList;
 @end
 
 @implementation ZipCodeListViewController
@@ -22,8 +23,8 @@
     [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                   target:self
                                                   action:@selector(showAddZipCodeAlert)];
+    
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -32,12 +33,12 @@
 
 #pragma mark - Getters
 
-- (NSArray *)zipCodeList {
-    if (!_zipCodesList) {
-        _zipCodesList = [Weather getAllZipCodes];
+- (NSFetchedResultsController *)zipCodeList {
+    if (!_zipCodeList) {
+        _zipCodeList = [Weather getAllZipCodesWithDelegate:self];
     }
     
-    return _zipCodesList;
+    return _zipCodeList;
 }
 
 #pragma mark -
@@ -48,12 +49,14 @@
     
     UIAlertAction* ok = [UIAlertAction actionWithTitle:@"Add"
                                                  style:UIAlertActionStyleDefault
-                                               handler:^(UIAlertAction * _Nonnull action) {
+                                               handler:^(UIAlertAction *action) {
                                                    UITextField *zipCodeTextField = alertController.textFields.firstObject;
                                                    NSLog(@"%@", zipCodeTextField.text);
-                                                   if (!zipCodeTextField) {
+                                                   if (!zipCodeTextField.text) {
                                                        return;
                                                    }
+                                                   [self addZip:zipCodeTextField.text];
+                                                   
                                                    
                                                }];
     UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"Cancel"
@@ -70,29 +73,79 @@
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
-#pragma mark - Table view data source
+#pragma mark -
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+- (void)addZip:(NSString *)zipCode
 {
-    return 1;
+    [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext * _Nonnull localContext) {
+        Weather *weather = [Weather MR_createEntityInContext:localContext];
+        weather.zip = zipCode;
+    }];
+    [self.zipCodeList performFetch:nil];
 }
+
+#pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.zipCodeList count];
+    id<NSFetchedResultsSectionInfo> sectionInfo = [self.zipCodeList.sections objectAtIndex:section];
+    return [sectionInfo numberOfObjects];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"zipCodeCell" forIndexPath:indexPath];
     
-    // Configure the cell...
-    Weather *weather = self.zipCodesList[indexPath.row];
+    Weather *weather = [self.zipCodeList objectAtIndexPath:indexPath];
     cell.textLabel.text = weather.zip;
     
     return cell;
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        Weather *weather = [self.zipCodeList objectAtIndexPath:indexPath];
+        [weather deleteZipCode];
+    }
+}
+
+#pragma mark - NSFetchedResultsController
+
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
+{
+    [self.tableView beginUpdates];
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+{
+    [self.tableView endUpdates];
+}
+
+- (void)controller:(NSFetchedResultsController *)controller
+   didChangeObject:(id)anObject
+       atIndexPath:(NSIndexPath *)indexPath
+     forChangeType:(NSFetchedResultsChangeType)type
+      newIndexPath:(NSIndexPath *)newIndexPath
+{
+    switch (type) {
+        case NSFetchedResultsChangeInsert: {
+            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
+                                  withRowAnimation:UITableViewRowAnimationFade];
+            break;
+        }
+        case NSFetchedResultsChangeDelete: {
+            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                                  withRowAnimation:UITableViewRowAnimationFade];
+            break;
+        }
+    }
+}
 
 
 @end

@@ -53,6 +53,8 @@
 	return keyPaths;
 }
 
+@dynamic condition;
+
 @dynamic humidity;
 
 - (float)humidityValue {
@@ -142,6 +144,9 @@
 @end
 
 @implementation WeatherAttributes 
++ (NSString *)condition {
+	return @"condition";
+}
 + (NSString *)humidity {
 	return @"humidity";
 }
@@ -161,6 +166,12 @@
 	return @"weatherDescription";
 }
 + (NSString *)zip {
+	return @"zip";
+}
+@end
+
+@implementation WeatherUserInfo 
++ (NSString *)relatedByAttribute {
 	return @"zip";
 }
 @end

@@ -9,11 +9,14 @@
 
 @implementation Weather
 
-+ (NSArray *)getAllZipCodes {
-    NSArray *zipCodesSorted = [Weather MR_findAllSortedBy:@"zip"
-                                                ascending:YES];
-    
-    return zipCodesSorted;
++ (NSFetchedResultsController *)getAllZipCodesWithDelegate:(id<NSFetchedResultsControllerDelegate>)delegate {
+    return [Weather MR_fetchAllSortedBy:@"zip" ascending:YES withPredicate:nil groupBy:nil delegate:delegate];
+}
+
+- (void)deleteZipCode {
+    [MagicalRecord saveWithBlock:^(NSManagedObjectContext * _Nonnull localContext) {
+        [self MR_deleteEntityInContext:localContext];
+    }];
 }
 
 @end

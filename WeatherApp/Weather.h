@@ -2,7 +2,6 @@
 
 @interface Weather : _Weather
 
-+ (NSArray *)getAllZipCodes;
-
-
++ (NSFetchedResultsController *)getAllZipCodesWithDelegate:(id<NSFetchedResultsControllerDelegate>)delegate;
+- (void)deleteZipCode;
 @end

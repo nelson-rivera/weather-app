@@ -17,6 +17,7 @@
 		5299559E1E43804F00DF58A1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5299559C1E43804F00DF58A1 /* LaunchScreen.storyboard */; };
 		52C4C0F81E440BC800940523 /* _Weather.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C4C0F51E440BC800940523 /* _Weather.m */; };
 		52C4C0F91E440BC800940523 /* Weather.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C4C0F71E440BC800940523 /* Weather.m */; };
+		52C4C0FD1E4450FB00940523 /* WeatherAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C4C0FC1E4450FB00940523 /* WeatherAPI.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,8 @@
 		52C4C0F51E440BC800940523 /* _Weather.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Weather.m; sourceTree = "<group>"; };
 		52C4C0F61E440BC800940523 /* Weather.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Weather.h; sourceTree = "<group>"; };
 		52C4C0F71E440BC800940523 /* Weather.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Weather.m; sourceTree = "<group>"; };
+		52C4C0FB1E4450FB00940523 /* WeatherAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherAPI.h; sourceTree = "<group>"; };
+		52C4C0FC1E4450FB00940523 /* WeatherAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherAPI.m; sourceTree = "<group>"; };
 		5F0706F0E5888D592E8E8299 /* libPods-WeatherApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WeatherApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		87F6068450678E6B9ABDB9B0 /* Pods-WeatherApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherApp/Pods-WeatherApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -103,6 +106,7 @@
 		5299558A1E43804F00DF58A1 /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				52C4C0FA1E4450D500940523 /* Service */,
 				5201C65B1E4402DD00E90BD3 /* ViewController */,
 				5201C65A1E4402D700E90BD3 /* View */,
 				5201C6591E4402D100E90BD3 /* Model */,
@@ -121,6 +125,15 @@
 				5299558C1E43804F00DF58A1 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		52C4C0FA1E4450D500940523 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				52C4C0FB1E4450FB00940523 /* WeatherAPI.h */,
+				52C4C0FC1E4450FB00940523 /* WeatherAPI.m */,
+			);
+			name = Service;
 			sourceTree = "<group>";
 		};
 		5A458C0D718BFF02470F709B /* Pods */ = {
@@ -268,6 +281,7 @@
 				5299558D1E43804F00DF58A1 /* main.m in Sources */,
 				5201C65E1E44035200E90BD3 /* ZipCodeListViewController.m in Sources */,
 				52C4C0F81E440BC800940523 /* _Weather.m in Sources */,
+				52C4C0FD1E4450FB00940523 /* WeatherAPI.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

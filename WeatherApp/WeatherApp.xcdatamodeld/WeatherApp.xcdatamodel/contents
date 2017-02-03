@@ -2,13 +2,37 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16A323" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="Weather" representedClassName="Weather" syncable="YES">
         <attribute name="condition" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="humidity" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="humidity" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES">
+            <userInfo>
+                <entry key="mappedKeyName" value="main.humidity"/>
+            </userInfo>
+        </attribute>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="temp" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="tempMax" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="tempMin" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="temp" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES">
+            <userInfo>
+                <entry key="mappedKeyName" value="main.temp"/>
+            </userInfo>
+        </attribute>
+        <attribute name="tempMax" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES">
+            <userInfo>
+                <entry key="mappedKeyName" value="main.temp_max"/>
+            </userInfo>
+        </attribute>
+        <attribute name="tempMin" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES">
+            <userInfo>
+                <entry key="mappedKeyName" value="main.temp_min"/>
+            </userInfo>
+        </attribute>
         <attribute name="weatherDescription" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="zip" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="zip" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="zip"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+        <userInfo>
+            <entry key="relatedByAttribute" value="zip"/>
+        </userInfo>
     </entity>
     <elements>
         <element name="Weather" positionX="-63" positionY="-18" width="128" height="165"/>

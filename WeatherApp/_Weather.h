@@ -20,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (nullable NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) WeatherID *objectID;
 
+@property (nonatomic, strong, nullable) NSString* condition;
+
 @property (nonatomic, strong, nullable) NSNumber* humidity;
 
 @property (atomic) float humidityValue;
@@ -53,6 +55,9 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface _Weather (CoreDataGeneratedPrimitiveAccessors)
+
+- (nullable NSString*)primitiveCondition;
+- (void)setPrimitiveCondition:(nullable NSString*)value;
 
 - (nullable NSNumber*)primitiveHumidity;
 - (void)setPrimitiveHumidity:(nullable NSNumber*)value;
@@ -90,6 +95,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface WeatherAttributes: NSObject 
++ (NSString *)condition;
 + (NSString *)humidity;
 + (NSString *)name;
 + (NSString *)temp;
@@ -97,6 +103,10 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)tempMin;
 + (NSString *)weatherDescription;
 + (NSString *)zip;
+@end
+
+@interface WeatherUserInfo: NSObject 
++ (NSString *)relatedByAttribute;
 @end
 
 NS_ASSUME_NONNULL_END
