@@ -61,42 +61,45 @@
 		5201C6591E4402D100E90BD3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				52C4C0F41E440BC800940523 /* _Weather.h */,
-				52C4C0F51E440BC800940523 /* _Weather.m */,
 				52C4C0F61E440BC800940523 /* Weather.h */,
 				52C4C0F71E440BC800940523 /* Weather.m */,
 				529955971E43804F00DF58A1 /* WeatherApp.xcdatamodeld */,
+				52C4C0F41E440BC800940523 /* _Weather.h */,
+				52C4C0F51E440BC800940523 /* _Weather.m */,
 			);
 			name = Model;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		5201C65A1E4402D700E90BD3 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				529955941E43804F00DF58A1 /* Main.storyboard */,
 				5299559C1E43804F00DF58A1 /* LaunchScreen.storyboard */,
+				529955941E43804F00DF58A1 /* Main.storyboard */,
 			);
 			name = View;
+			path = View;
 			sourceTree = "<group>";
 		};
 		5201C65B1E4402DD00E90BD3 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				5201C65C1E44035200E90BD3 /* ZipCodeListViewController.h */,
-				5201C65D1E44035200E90BD3 /* ZipCodeListViewController.m */,
 				521199561E44F42E008FF8AE /* WeatherDetailViewController.h */,
 				521199571E44F42E008FF8AE /* WeatherDetailViewController.m */,
+				5201C65C1E44035200E90BD3 /* ZipCodeListViewController.h */,
+				5201C65D1E44035200E90BD3 /* ZipCodeListViewController.m */,
 			);
 			name = ViewController;
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		5299557F1E43804F00DF58A1 = {
 			isa = PBXGroup;
 			children = (
-				5299558A1E43804F00DF58A1 /* WeatherApp */,
-				529955891E43804F00DF58A1 /* Products */,
-				5A458C0D718BFF02470F709B /* Pods */,
 				A3E2C5E2D646C6C66AA60ED4 /* Frameworks */,
+				5A458C0D718BFF02470F709B /* Pods */,
+				529955891E43804F00DF58A1 /* Products */,
+				5299558A1E43804F00DF58A1 /* WeatherApp */,
 			);
 			sourceTree = "<group>";
 		};
@@ -111,15 +114,15 @@
 		5299558A1E43804F00DF58A1 /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
-				52C4C0FA1E4450D500940523 /* Service */,
-				5201C65B1E4402DD00E90BD3 /* ViewController */,
-				5201C65A1E4402D700E90BD3 /* View */,
 				5201C6591E4402D100E90BD3 /* Model */,
+				52C4C0FA1E4450D500940523 /* Service */,
+				5299558B1E43804F00DF58A1 /* Supporting Files */,
+				5201C65A1E4402D700E90BD3 /* View */,
+				5201C65B1E4402DD00E90BD3 /* ViewController */,
 				5299558E1E43804F00DF58A1 /* AppDelegate.h */,
 				5299558F1E43804F00DF58A1 /* AppDelegate.m */,
 				5299559A1E43804F00DF58A1 /* Assets.xcassets */,
 				5299559F1E43804F00DF58A1 /* Info.plist */,
-				5299558B1E43804F00DF58A1 /* Supporting Files */,
 			);
 			path = WeatherApp;
 			sourceTree = "<group>";
@@ -130,6 +133,7 @@
 				5299558C1E43804F00DF58A1 /* main.m */,
 			);
 			name = "Supporting Files";
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		52C4C0FA1E4450D500940523 /* Service */ = {
@@ -139,6 +143,7 @@
 				52C4C0FC1E4450FB00940523 /* WeatherAPI.m */,
 			);
 			name = Service;
+			path = Service;
 			sourceTree = "<group>";
 		};
 		5A458C0D718BFF02470F709B /* Pods */ = {
@@ -300,6 +305,7 @@
 				529955951E43804F00DF58A1 /* Base */,
 			);
 			name = Main.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 		5299559C1E43804F00DF58A1 /* LaunchScreen.storyboard */ = {
@@ -308,6 +314,7 @@
 				5299559D1E43804F00DF58A1 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
