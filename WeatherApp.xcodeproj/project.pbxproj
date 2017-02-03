@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		485245421003E3CBC1CDD45E /* libPods-WeatherApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F0706F0E5888D592E8E8299 /* libPods-WeatherApp.a */; };
 		5201C65E1E44035200E90BD3 /* ZipCodeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5201C65D1E44035200E90BD3 /* ZipCodeListViewController.m */; };
+		521199581E44F42E008FF8AE /* WeatherDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 521199571E44F42E008FF8AE /* WeatherDetailViewController.m */; };
 		5299558D1E43804F00DF58A1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5299558C1E43804F00DF58A1 /* main.m */; };
 		529955901E43804F00DF58A1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5299558F1E43804F00DF58A1 /* AppDelegate.m */; };
 		529955961E43804F00DF58A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 529955941E43804F00DF58A1 /* Main.storyboard */; };
@@ -24,6 +25,8 @@
 		49D3BE4D88E082347C87772D /* Pods-WeatherApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherApp/Pods-WeatherApp.release.xcconfig"; sourceTree = "<group>"; };
 		5201C65C1E44035200E90BD3 /* ZipCodeListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipCodeListViewController.h; sourceTree = "<group>"; };
 		5201C65D1E44035200E90BD3 /* ZipCodeListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZipCodeListViewController.m; sourceTree = "<group>"; };
+		521199561E44F42E008FF8AE /* WeatherDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherDetailViewController.h; sourceTree = "<group>"; };
+		521199571E44F42E008FF8AE /* WeatherDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherDetailViewController.m; sourceTree = "<group>"; };
 		529955881E43804F00DF58A1 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5299558C1E43804F00DF58A1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5299558E1E43804F00DF58A1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -81,6 +84,8 @@
 			children = (
 				5201C65C1E44035200E90BD3 /* ZipCodeListViewController.h */,
 				5201C65D1E44035200E90BD3 /* ZipCodeListViewController.m */,
+				521199561E44F42E008FF8AE /* WeatherDetailViewController.h */,
+				521199571E44F42E008FF8AE /* WeatherDetailViewController.m */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -275,6 +280,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				521199581E44F42E008FF8AE /* WeatherDetailViewController.m in Sources */,
 				52C4C0F91E440BC800940523 /* Weather.m in Sources */,
 				529955991E43804F00DF58A1 /* WeatherApp.xcdatamodeld in Sources */,
 				529955901E43804F00DF58A1 /* AppDelegate.m in Sources */,

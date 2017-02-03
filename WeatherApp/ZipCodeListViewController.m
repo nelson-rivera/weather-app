@@ -9,6 +9,7 @@
 #import "ZipCodeListViewController.h"
 #import "Weather.h"
 #import "WeatherAPI.h"
+#import "WeatherDetailViewController.h"
 #import <MagicalRecord/MagicalRecord.h>
 
 static NSString *const APIKey = @"28b2c96074e5b1ded3c1053c7ab408c4";
@@ -188,10 +189,19 @@ static NSString *const APIKey = @"28b2c96074e5b1ded3c1053c7ab408c4";
         if (error && !contextDidSave) {
             return;
         }
-        NSLog(@"%@", [Weather getWeatherWithZipCode:responseObject[@"zip"]]);
-        //new view should be loaded here
+        Weather *weather = [Weather getWeatherWithZipCode:responseObject[@"zip"]];
+        [self performSegueWithIdentifier:@"showZipWeather" sender:weather];
     }];
 }
 
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"showZipWeather"] &&
+        [segue.destinationViewController isKindOfClass:[WeatherDetailViewController class]]) {
+        WeatherDetailViewController *vc = segue.destinationViewController;
+        vc.weather = sender;
+    }
+}
 
 @end
