@@ -8,7 +8,10 @@
 
 #import "ZipCodeListViewController.h"
 #import "Weather.h"
+#import "WeatherAPI.h"
 #import <MagicalRecord/MagicalRecord.h>
+
+static NSString *const APIKey = @"28b2c96074e5b1ded3c1053c7ab408c4";
 
 @interface ZipCodeListViewController () <NSFetchedResultsControllerDelegate>
 @property (strong, nonatomic) NSFetchedResultsController *zipCodeList;
@@ -23,6 +26,8 @@
     [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                   target:self
                                                   action:@selector(showAddZipCodeAlert)];
+    
+    [WeatherAPI setAPIKey:APIKey];
     
 }
 
@@ -107,6 +112,33 @@
     return YES;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    tableView.allowsSelection = NO;
+    Weather *weather = [self.zipCodeList objectAtIndexPath:indexPath];
+    NSString *zipCode = weather.zip;
+    
+    [[WeatherAPI sharedInstance] getWeatherByZipCode:zipCode
+                                                   success:^(id responseObject) {
+                                                       tableView.allowsSelection = YES;
+                                                       
+                                                       NSMutableDictionary *mutableResponse = [(NSDictionary *)responseObject mutableCopy];
+                                                       NSString *condition = [[[mutableResponse objectForKey:@"weather"] firstObject] objectForKey:@"main"];
+                                                       NSString *description =
+                                                       [[[mutableResponse objectForKey:@"weather"] firstObject] objectForKey:@"description"];
+                                                       [mutableResponse setObject:condition forKey:@"condition"];
+                                                       [mutableResponse setObject:description forKey:@"weatherDescription"];
+                                                       [mutableResponse setObject:zipCode forKey:@"zip"];
+                                                       [self addWeatherToZipCode:mutableResponse];
+                                                   }
+                                                     failure:^(NSURLSessionDataTask *task, NSError *error) {
+                                                         NSLog(@"Error: %@", error);
+                                                         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                                                         [alertView show];
+                                                         tableView.allowsSelection = YES;
+                                                     }];
+}
+
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
@@ -145,6 +177,20 @@
             break;
         }
     }
+}
+
+#pragma - Persistence
+
+- (void)addWeatherToZipCode:(NSDictionary *)responseObject {
+    [MagicalRecord saveWithBlock:^(NSManagedObjectContext *_Nonnull localContext) {
+        [Weather MR_importFromObject:responseObject inContext:localContext];
+    } completion:^(BOOL contextDidSave, NSError *_Nullable error) {
+        if (error && !contextDidSave) {
+            return;
+        }
+        NSLog(@"%@", [Weather getWeatherWithZipCode:responseObject[@"zip"]]);
+        //new view should be loaded here
+    }];
 }
 
 

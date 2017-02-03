@@ -13,6 +13,10 @@
     return [Weather MR_fetchAllSortedBy:@"zip" ascending:YES withPredicate:nil groupBy:nil delegate:delegate];
 }
 
++ (Weather *)getWeatherWithZipCode:(NSString *)zipCode {
+    return [Weather MR_findFirstByAttribute:@"zip" withValue:zipCode];
+}
+
 - (void)deleteZipCode {
     [MagicalRecord saveWithBlock:^(NSManagedObjectContext * _Nonnull localContext) {
         [self MR_deleteEntityInContext:localContext];
