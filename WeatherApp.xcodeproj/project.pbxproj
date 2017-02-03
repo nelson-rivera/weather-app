@@ -8,28 +8,34 @@
 
 /* Begin PBXBuildFile section */
 		485245421003E3CBC1CDD45E /* libPods-WeatherApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F0706F0E5888D592E8E8299 /* libPods-WeatherApp.a */; };
+		5201C65E1E44035200E90BD3 /* ZipCodeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5201C65D1E44035200E90BD3 /* ZipCodeListViewController.m */; };
 		5299558D1E43804F00DF58A1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5299558C1E43804F00DF58A1 /* main.m */; };
 		529955901E43804F00DF58A1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5299558F1E43804F00DF58A1 /* AppDelegate.m */; };
-		529955931E43804F00DF58A1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 529955921E43804F00DF58A1 /* ViewController.m */; };
 		529955961E43804F00DF58A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 529955941E43804F00DF58A1 /* Main.storyboard */; };
 		529955991E43804F00DF58A1 /* WeatherApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 529955971E43804F00DF58A1 /* WeatherApp.xcdatamodeld */; };
 		5299559B1E43804F00DF58A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5299559A1E43804F00DF58A1 /* Assets.xcassets */; };
 		5299559E1E43804F00DF58A1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5299559C1E43804F00DF58A1 /* LaunchScreen.storyboard */; };
+		52C4C0F81E440BC800940523 /* _Weather.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C4C0F51E440BC800940523 /* _Weather.m */; };
+		52C4C0F91E440BC800940523 /* Weather.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C4C0F71E440BC800940523 /* Weather.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		49D3BE4D88E082347C87772D /* Pods-WeatherApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherApp/Pods-WeatherApp.release.xcconfig"; sourceTree = "<group>"; };
+		5201C65C1E44035200E90BD3 /* ZipCodeListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipCodeListViewController.h; sourceTree = "<group>"; };
+		5201C65D1E44035200E90BD3 /* ZipCodeListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZipCodeListViewController.m; sourceTree = "<group>"; };
 		529955881E43804F00DF58A1 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5299558C1E43804F00DF58A1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5299558E1E43804F00DF58A1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5299558F1E43804F00DF58A1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		529955911E43804F00DF58A1 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		529955921E43804F00DF58A1 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		529955951E43804F00DF58A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		529955981E43804F00DF58A1 /* WeatherApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WeatherApp.xcdatamodel; sourceTree = "<group>"; };
 		5299559A1E43804F00DF58A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5299559D1E43804F00DF58A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5299559F1E43804F00DF58A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		52C4C0F41E440BC800940523 /* _Weather.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Weather.h; sourceTree = "<group>"; };
+		52C4C0F51E440BC800940523 /* _Weather.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Weather.m; sourceTree = "<group>"; };
+		52C4C0F61E440BC800940523 /* Weather.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Weather.h; sourceTree = "<group>"; };
+		52C4C0F71E440BC800940523 /* Weather.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Weather.m; sourceTree = "<group>"; };
 		5F0706F0E5888D592E8E8299 /* libPods-WeatherApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WeatherApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		87F6068450678E6B9ABDB9B0 /* Pods-WeatherApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherApp/Pods-WeatherApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -46,6 +52,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5201C6591E4402D100E90BD3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				52C4C0F41E440BC800940523 /* _Weather.h */,
+				52C4C0F51E440BC800940523 /* _Weather.m */,
+				52C4C0F61E440BC800940523 /* Weather.h */,
+				52C4C0F71E440BC800940523 /* Weather.m */,
+				529955971E43804F00DF58A1 /* WeatherApp.xcdatamodeld */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		5201C65A1E4402D700E90BD3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				529955941E43804F00DF58A1 /* Main.storyboard */,
+				5299559C1E43804F00DF58A1 /* LaunchScreen.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		5201C65B1E4402DD00E90BD3 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				5201C65C1E44035200E90BD3 /* ZipCodeListViewController.h */,
+				5201C65D1E44035200E90BD3 /* ZipCodeListViewController.m */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
 		5299557F1E43804F00DF58A1 = {
 			isa = PBXGroup;
 			children = (
@@ -67,15 +103,13 @@
 		5299558A1E43804F00DF58A1 /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				5201C65B1E4402DD00E90BD3 /* ViewController */,
+				5201C65A1E4402D700E90BD3 /* View */,
+				5201C6591E4402D100E90BD3 /* Model */,
 				5299558E1E43804F00DF58A1 /* AppDelegate.h */,
 				5299558F1E43804F00DF58A1 /* AppDelegate.m */,
-				529955911E43804F00DF58A1 /* ViewController.h */,
-				529955921E43804F00DF58A1 /* ViewController.m */,
-				529955941E43804F00DF58A1 /* Main.storyboard */,
 				5299559A1E43804F00DF58A1 /* Assets.xcassets */,
-				5299559C1E43804F00DF58A1 /* LaunchScreen.storyboard */,
 				5299559F1E43804F00DF58A1 /* Info.plist */,
-				529955971E43804F00DF58A1 /* WeatherApp.xcdatamodeld */,
 				5299558B1E43804F00DF58A1 /* Supporting Files */,
 			);
 			path = WeatherApp;
@@ -228,10 +262,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52C4C0F91E440BC800940523 /* Weather.m in Sources */,
 				529955991E43804F00DF58A1 /* WeatherApp.xcdatamodeld in Sources */,
-				529955931E43804F00DF58A1 /* ViewController.m in Sources */,
 				529955901E43804F00DF58A1 /* AppDelegate.m in Sources */,
 				5299558D1E43804F00DF58A1 /* main.m in Sources */,
+				5201C65E1E44035200E90BD3 /* ZipCodeListViewController.m in Sources */,
+				52C4C0F81E440BC800940523 /* _Weather.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,6 +424,7 @@
 				529955A41E43804F00DF58A1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
