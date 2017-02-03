@@ -99,12 +99,13 @@
 		521199591E451BB9008FF8AE /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				5211995A1E451C46008FF8AE /* NSNumber+TempUnits.h */,
-				5211995B1E451C46008FF8AE /* NSNumber+TempUnits.m */,
 				5211995D1E4528D8008FF8AE /* FirstLaunchSetup.h */,
 				5211995E1E4528D8008FF8AE /* FirstLaunchSetup.m */,
+				5211995A1E451C46008FF8AE /* NSNumber+TempUnits.h */,
+				5211995B1E451C46008FF8AE /* NSNumber+TempUnits.m */,
 			);
 			name = Utils;
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		5299557F1E43804F00DF58A1 = {
@@ -128,10 +129,10 @@
 		5299558A1E43804F00DF58A1 /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
-				521199591E451BB9008FF8AE /* Utils */,
 				5201C6591E4402D100E90BD3 /* Model */,
 				52C4C0FA1E4450D500940523 /* Service */,
 				5299558B1E43804F00DF58A1 /* Supporting Files */,
+				521199591E451BB9008FF8AE /* Utils */,
 				5201C65A1E4402D700E90BD3 /* View */,
 				5201C65B1E4402DD00E90BD3 /* ViewController */,
 				5299558E1E43804F00DF58A1 /* AppDelegate.h */,
