@@ -7,9 +7,11 @@
 //
 
 #import "AppDelegate.h"
+#import "Weather.h"
+#import "FirstLaunchSetup.h"
 #import <MagicalRecord/MagicalRecord.h>
 #import <AFNetworking/AFNetworkReachabilityManager.h>
-#import "Weather.h"
+
 
 @interface AppDelegate ()
 
@@ -21,7 +23,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [[AFNetworkReachabilityManager sharedManager] startMonitoring];
-    [self firstLaunchSetup];
+    [MagicalRecord setupCoreDataStack];
+    [FirstLaunchSetup firstLaunchSetup];
     return YES;
 }
 
@@ -51,26 +54,6 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
-}
-
-- (void)firstLaunchSetup
-{
-    [MagicalRecord setupCoreDataStack];
-    
-    BOOL initialSetupDone = [[NSUserDefaults standardUserDefaults] boolForKey:@"initialSetupDone"];
-    
-    if (!initialSetupDone) {
-        NSArray *zipCodes = @[ @"90210", @"20151", @"02108" ];
-        
-        [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
-            for (NSString *zipCode in zipCodes) {
-                Weather *weather = [Weather MR_createEntityInContext:localContext];
-                weather.zip = zipCode;
-            }
-        }];
-        
-        [[NSUserDefaults standardUserDefaults] setObject:@(YES) forKey:@"initialSetupDone"];
-    }
 }
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "WeatherAPI.h"
+#import "Weather.h"
 #import <AFNetworking/AFNetworking.h>
 #import <MagicalRecord/MagicalRecord.h>
 
@@ -23,32 +24,16 @@ static NSString *const kAPIURL = @"http://api.openweathermap.org/data/2.5/";
 
 static WeatherAPI *shared = nil;
 
-#pragma mark - Initialization
+#pragma mark - Singleton
 
-- (instancetype)initWithAPIKey:(NSString *)APIKey {
-    self = [super init];
-    if (self) {
-        self.APIKey = APIKey;
-    }
-    
-    return self;
-}
-
-+ (WeatherAPI *)setAPIKey:(NSString *)APIKey {
++ (instancetype)sharedInstance {
+    static WeatherAPI *sharedInstance;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        shared = [[self alloc] initWithAPIKey:APIKey];
+        sharedInstance = [[self alloc] init];
     });
     
-    
-    return shared;
-}
-
-+ (WeatherAPI *)sharedInstance {
-    if (shared == nil) {
-        NSLog(@"ERROR: Please use setAPIKey before calling this method");
-    }
-    return shared;
+    return sharedInstance;
 }
 
 #pragma mark - Getters
@@ -61,29 +46,57 @@ static WeatherAPI *shared = nil;
     return _sessionManager;
 }
 
+- (NSString *)APIKey {
+    if (!_APIKey) {
+        _APIKey = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"OWAPIKey"];
+    }
+    return _APIKey;
+}
+
 #pragma mark - Weather API interaction
 
 - (void)getWeatherByZipCode:(NSString *)zipCode
               success:(void (^)(id response))successBlock
-              failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failureBlock {
+              failure:(void (^)(NSError *error))failureBlock {
     
     NSMutableDictionary *params = [self getParametrizedAPIKey];
     [params addEntriesFromDictionary:@{ @"zip" : zipCode}];
+    
+    if (![self isConnectedToInternet]) {
+        Weather *weather = [Weather MR_findFirstByAttribute:@"zip" withValue:zipCode];
+        if (!weather || !weather.weatherDescription.length) {
+            NSError *error = [[NSError alloc] initWithDomain:@"WeatherApp"
+                                                        code:-1
+                                                    userInfo:@{NSLocalizedDescriptionKey: @"Failed to load weather data, make sure you have an active internet connection"}];
+            failureBlock(error);
+            return;
+        }
+        successBlock((id)weather);
+        return;
+    }
     
     [self.sessionManager GET:@"weather"
                   parameters:params
                      success:^(NSURLSessionTask * _Nonnull task, id _Nullable responseObject){
                          successBlock(responseObject);
                      }
-                     failure:failureBlock];
+                     failure:^(NSURLSessionDataTask *task, NSError *error) {
+                         failureBlock(error);
+                     }];
     
 }
+
+#pragma mark - Utils
 
 - (NSMutableDictionary *)getParametrizedAPIKey {
     NSMutableDictionary *parametrizedToken = [NSMutableDictionary new];
     [parametrizedToken setObject:self.APIKey forKey:@"APPID"];
     
     return parametrizedToken;
+}
+
+- (BOOL)isConnectedToInternet {
+    return [AFNetworkReachabilityManager sharedManager].reachable;
 }
 
 @end

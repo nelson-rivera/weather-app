@@ -23,20 +23,13 @@ static NSString *const APIKey = @"28b2c96074e5b1ded3c1053c7ab408c4";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.rightBarButtonItem =
     [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                   target:self
                                                   action:@selector(showAddZipCodeAlert)];
-    //Setting API Key to Weather API servi
-    [WeatherAPI setAPIKey:APIKey];
     
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 #pragma mark - Getters
 
@@ -119,35 +112,25 @@ static NSString *const APIKey = @"28b2c96074e5b1ded3c1053c7ab408c4";
     tableView.allowsSelection = NO;
     Weather *weather = [self.zipCodeList objectAtIndexPath:indexPath];
     NSString *zipCode = weather.zip;
-    if (![self isConnectedToInternet]) {
-        Weather *weather = [Weather MR_findFirstByAttribute:@"zip" withValue:zipCode];
-        if (!weather || !weather.weatherDescription.length) {
-            NSError *error = [[NSError alloc] initWithDomain:@"WeatherApp" code:-1 userInfo:@{NSLocalizedDescriptionKey: @"Failed to load weather data, make sure you have an active internet connection"}];
-            [self displayError:error];
-            tableView.allowsSelection = YES;
-            return;
-        }
-        [self showWeatherDetailViewWithZipCode:zipCode];
-        tableView.allowsSelection = YES;
-        return;
-    }
     [[WeatherAPI sharedInstance] getWeatherByZipCode:zipCode
-                                                   success:^(id responseObject) {
-                                                       tableView.allowsSelection = YES;
-                                                       
-                                                       NSMutableDictionary *mutableResponse = [(NSDictionary *)responseObject mutableCopy];
-                                                       NSString *condition = [[[mutableResponse objectForKey:@"weather"] firstObject] objectForKey:@"main"];
-                                                       NSString *description =
-                                                       [[[mutableResponse objectForKey:@"weather"] firstObject] objectForKey:@"description"];
-                                                       [mutableResponse setObject:condition forKey:@"condition"];
-                                                       [mutableResponse setObject:description forKey:@"weatherDescription"];
-                                                       [mutableResponse setObject:zipCode forKey:@"zip"];
-                                                       [self addWeatherToZipCode:mutableResponse];
-                                                   }
-                                                     failure:^(NSURLSessionDataTask *task, NSError *error) {
-                                                         [self displayError:error];
-                                                         tableView.allowsSelection = YES;
-                                                     }];
+                                             success:^(id responseObject) {
+                                                 tableView.allowsSelection = YES;
+                                                 if ([responseObject isKindOfClass:[Weather class]]) {
+                                                     [self showWeatherDetailViewWithZipCode:zipCode];
+                                                     return;
+                                                 }
+                                                 NSMutableDictionary *mutableResponse = [(NSDictionary *)responseObject mutableCopy];
+                                                 NSString *condition = [[mutableResponse[@"weather"] firstObject] objectForKey:@"main"];
+                                                 NSString *description = [[mutableResponse[@"weather"] firstObject] objectForKey:@"description"];
+                                                 [mutableResponse setObject:condition forKey:@"condition"];
+                                                 [mutableResponse setObject:description forKey:@"weatherDescription"];
+                                                 [mutableResponse setObject:zipCode forKey:@"zip"];
+                                                 [self addWeatherToZipCode:mutableResponse];
+                                            }
+                                            failure:^(NSError *error) {
+                                                    [self displayError:error];
+                                                    tableView.allowsSelection = YES;
+                                            }];
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -187,6 +170,9 @@ static NSString *const APIKey = @"28b2c96074e5b1ded3c1053c7ab408c4";
                                   withRowAnimation:UITableViewRowAnimationFade];
             break;
         }
+        default: {
+            break;
+        }
     }
 }
 
@@ -220,14 +206,18 @@ static NSString *const APIKey = @"28b2c96074e5b1ded3c1053c7ab408c4";
 
 #pragma mark - Utils
 
-- (BOOL)isConnectedToInternet {
-    return [AFNetworkReachabilityManager sharedManager].reachable;
-}
-
 - (void)displayError:(NSError *)error {
     NSLog(@"Error: %@", error);
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-    [alertView show];
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                             message:error.localizedDescription
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* ok = [UIAlertAction actionWithTitle:@"Ok"
+                                                 style:UIAlertActionStyleDefault
+                                               handler:nil];
+    [alertController addAction:ok];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 

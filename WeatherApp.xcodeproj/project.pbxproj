@@ -10,6 +10,8 @@
 		485245421003E3CBC1CDD45E /* libPods-WeatherApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F0706F0E5888D592E8E8299 /* libPods-WeatherApp.a */; };
 		5201C65E1E44035200E90BD3 /* ZipCodeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5201C65D1E44035200E90BD3 /* ZipCodeListViewController.m */; };
 		521199581E44F42E008FF8AE /* WeatherDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 521199571E44F42E008FF8AE /* WeatherDetailViewController.m */; };
+		5211995C1E451C46008FF8AE /* NSNumber+TempUnits.m in Sources */ = {isa = PBXBuildFile; fileRef = 5211995B1E451C46008FF8AE /* NSNumber+TempUnits.m */; };
+		5211995F1E4528D8008FF8AE /* FirstLaunchSetup.m in Sources */ = {isa = PBXBuildFile; fileRef = 5211995E1E4528D8008FF8AE /* FirstLaunchSetup.m */; };
 		5299558D1E43804F00DF58A1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5299558C1E43804F00DF58A1 /* main.m */; };
 		529955901E43804F00DF58A1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5299558F1E43804F00DF58A1 /* AppDelegate.m */; };
 		529955961E43804F00DF58A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 529955941E43804F00DF58A1 /* Main.storyboard */; };
@@ -27,6 +29,10 @@
 		5201C65D1E44035200E90BD3 /* ZipCodeListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZipCodeListViewController.m; sourceTree = "<group>"; };
 		521199561E44F42E008FF8AE /* WeatherDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherDetailViewController.h; sourceTree = "<group>"; };
 		521199571E44F42E008FF8AE /* WeatherDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherDetailViewController.m; sourceTree = "<group>"; };
+		5211995A1E451C46008FF8AE /* NSNumber+TempUnits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+TempUnits.h"; sourceTree = "<group>"; };
+		5211995B1E451C46008FF8AE /* NSNumber+TempUnits.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+TempUnits.m"; sourceTree = "<group>"; };
+		5211995D1E4528D8008FF8AE /* FirstLaunchSetup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstLaunchSetup.h; sourceTree = "<group>"; };
+		5211995E1E4528D8008FF8AE /* FirstLaunchSetup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstLaunchSetup.m; sourceTree = "<group>"; };
 		529955881E43804F00DF58A1 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5299558C1E43804F00DF58A1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5299558E1E43804F00DF58A1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -67,7 +73,6 @@
 				52C4C0F41E440BC800940523 /* _Weather.h */,
 				52C4C0F51E440BC800940523 /* _Weather.m */,
 			);
-			name = Model;
 			path = Model;
 			sourceTree = "<group>";
 		};
@@ -77,7 +82,6 @@
 				5299559C1E43804F00DF58A1 /* LaunchScreen.storyboard */,
 				529955941E43804F00DF58A1 /* Main.storyboard */,
 			);
-			name = View;
 			path = View;
 			sourceTree = "<group>";
 		};
@@ -89,8 +93,18 @@
 				5201C65C1E44035200E90BD3 /* ZipCodeListViewController.h */,
 				5201C65D1E44035200E90BD3 /* ZipCodeListViewController.m */,
 			);
-			name = ViewController;
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		521199591E451BB9008FF8AE /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				5211995A1E451C46008FF8AE /* NSNumber+TempUnits.h */,
+				5211995B1E451C46008FF8AE /* NSNumber+TempUnits.m */,
+				5211995D1E4528D8008FF8AE /* FirstLaunchSetup.h */,
+				5211995E1E4528D8008FF8AE /* FirstLaunchSetup.m */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 		5299557F1E43804F00DF58A1 = {
@@ -114,6 +128,7 @@
 		5299558A1E43804F00DF58A1 /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				521199591E451BB9008FF8AE /* Utils */,
 				5201C6591E4402D100E90BD3 /* Model */,
 				52C4C0FA1E4450D500940523 /* Service */,
 				5299558B1E43804F00DF58A1 /* Supporting Files */,
@@ -132,7 +147,6 @@
 			children = (
 				5299558C1E43804F00DF58A1 /* main.m */,
 			);
-			name = "Supporting Files";
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
@@ -142,7 +156,6 @@
 				52C4C0FB1E4450FB00940523 /* WeatherAPI.h */,
 				52C4C0FC1E4450FB00940523 /* WeatherAPI.m */,
 			);
-			name = Service;
 			path = Service;
 			sourceTree = "<group>";
 		};
@@ -286,6 +299,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				521199581E44F42E008FF8AE /* WeatherDetailViewController.m in Sources */,
+				5211995F1E4528D8008FF8AE /* FirstLaunchSetup.m in Sources */,
+				5211995C1E451C46008FF8AE /* NSNumber+TempUnits.m in Sources */,
 				52C4C0F91E440BC800940523 /* Weather.m in Sources */,
 				529955991E43804F00DF58A1 /* WeatherApp.xcdatamodeld in Sources */,
 				529955901E43804F00DF58A1 /* AppDelegate.m in Sources */,

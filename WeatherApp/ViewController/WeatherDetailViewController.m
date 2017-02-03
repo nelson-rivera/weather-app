@@ -7,6 +7,7 @@
 //
 
 #import "WeatherDetailViewController.h"
+#import "NSNumber+TempUnits.h"
 #import "Weather.h"
 
 @interface WeatherDetailViewController ()
@@ -22,13 +23,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     [self setupUI];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Setup
@@ -37,16 +32,9 @@
     self.zipCodeLabel.text = self.weather.zip;
     self.cityLabel.text = self.weather.name;
     self.descriptionLabel.text = self.weather.weatherDescription;
-    self.tempLabel.text = [self fromKelvinToFarenheit:self.weather.temp];
-    self.tempMaxLabel.text = [self fromKelvinToFarenheit:self.weather.tempMax];
-    self.tempMinLabel.text = [self fromKelvinToFarenheit:self.weather.tempMin];
-}
-
-#pragma mark - temp units conversion
-
-- (NSString *)fromKelvinToFarenheit:(NSNumber *)kTemp {
-    float fTemp = kTemp.floatValue * (9.0/5.0) - 459.67;
-    return [NSString stringWithFormat:@"%.0f°F", fTemp];
+    self.tempLabel.text = [NSString stringWithFormat:@"%.0f°F", ceil([self.weather.temp farenheitFromKelvin].floatValue)];
+    self.tempMaxLabel.text = [NSString stringWithFormat:@"%.0f°F", ceil([self.weather.tempMax farenheitFromKelvin].floatValue)];
+    self.tempMinLabel.text = [NSString stringWithFormat:@"%.0f°F", ceil([self.weather.tempMin farenheitFromKelvin].floatValue)];
 }
 
 

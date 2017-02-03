@@ -10,10 +10,9 @@
 
 @interface WeatherAPI : NSObject
 
-+ (WeatherAPI *)setAPIKey:(NSString *)APIKey;
 + (WeatherAPI *)sharedInstance;
 - (void)getWeatherByZipCode:(NSString *)zipCode
                     success:(void (^)(id response))successBlock
-                      failure:(void (^)(NSURLSessionDataTask *task, NSError *error))errorBlock;
+                      failure:(void (^)(NSError *error))errorBlock;
 
 @end
